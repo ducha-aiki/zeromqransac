@@ -29,10 +29,10 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-  if ((argc < 1))
+  if ((argc < 2))
     {
       std::cerr << " ************************************************************************** " << std::endl;
-      std::cerr << "Usage: " << argv[0] << " config.ini " << std::endl;
+      std::cerr << "Usage: " << argv[0] << " config.ini port " << std::endl;
       return 1;
     }
   configs Config1;
@@ -40,8 +40,10 @@ int main(int argc, char **argv)
   zmq::context_t context (1);
   int socket_mode = ZMQ_REP;
   zmq::socket_t   socket(context, socket_mode);
+  std::string port(argv[2]);
+  Config1.RANSACParam.port = "tcp://*:" + port;
   socket.bind(Config1.RANSACParam.port);
-   std::cout << " Ready!" << std::endl;
+   std::cout << " Ready at port " << Config1.RANSACParam.port  << std::endl;
 
   while(true) {
       zmq::message_t tentatives_msg;
