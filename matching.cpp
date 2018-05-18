@@ -451,7 +451,7 @@ int LORANSACFiltering(TentativeCorrespList &in_corresp, TentativeCorrespList &ra
       int* data_out = (int *) malloc(tent_size * 18 * sizeof(int));
       double *resids;
       exp_ransacHcustom(u2, tent_size, pars.err_threshold*pars.err_threshold, pars.confidence,
-                        max_samples, Hloran, inl2,4, data_out,oriented_constr ,0,&resids,HDS1,HDSi1,HDSidx1,pars.doSymmCheck);
+                        max_samples, Hloran, inl2, 4, data_out,oriented_constr ,0,&resids,HDS1,HDSi1,HDSidx1,pars.doSymmCheck);
       free(resids);
       free(data_out);
     }
@@ -512,8 +512,8 @@ int LORANSACFiltering(TentativeCorrespList &in_corresp, TentativeCorrespList &ra
       int checked_numb=0;
       checked_numb = NaiveHCheck(ransac_corresp,ransac_corresp.H, 10.0); //if distance between point and reprojected point in both images <=10 px - additional check for degeneracy
       if (checked_numb < MIN_POINTS) {
-          //     cerr << "Can`t get enough good points after naive check" << std::endl
-          //                   <<  checked_numb << " good points out of " << ransac_corresp.TCList.size() <<std::endl;
+       //        cerr << "Can`t get enough good points after naive check" << std::endl
+       //   cerr   <<  checked_numb << " good points out of " << ransac_corresp.TCList.size() <<std::endl;
           true_size = 0;
           ransac_corresp.TCList.clear();
         }
@@ -523,7 +523,7 @@ int LORANSACFiltering(TentativeCorrespList &in_corresp, TentativeCorrespList &ra
           checked_corresp.TCList.clear();
           true_size = 0;
         }
-      // std::cerr << checked_corresp.TCList.size() << " out of " << ransac_corresp.TCList.size() << " left after H-LAF-check" << std::endl;
+     //  std::cerr << checked_corresp.TCList.size() << " out of " << ransac_corresp.TCList.size() << " left after H-LAF-check" << std::endl;
       ransac_corresp.TCList = checked_corresp.TCList;
       true_size = checked_corresp.TCList.size();
     }

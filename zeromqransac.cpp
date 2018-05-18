@@ -55,7 +55,7 @@ int main(int argc, char **argv)
       int num_tents = inMsg.size() / (2*6);
       tents.TCList.reserve(num_tents);
 
-     // std::cout << num_tents << " tents get" << std::endl;
+      std::cout << num_tents << " tents get" << std::endl;
       int count = 0;
       for (int i = 0; i < num_tents; i++){
           TentativeCorresp tc;
@@ -119,9 +119,7 @@ int main(int argc, char **argv)
       DuplicateFiltering(tents, Config1.RANSACParam.duplicateDist);
 
       int num_inl = 0;
-      if (Config1.RANSACParam.Alg == "H") {
-          num_inl = LORANSACFiltering(tents,inliers, inliers.H, Config1.RANSACParam);
-        } else if (Config1.RANSACParam.Alg == "F") {
+      if ((Config1.RANSACParam.Alg == "H") || (Config1.RANSACParam.Alg == "F")) {
           num_inl = LORANSACFiltering(tents,inliers, inliers.H, Config1.RANSACParam);
         }
 #ifdef WITH_ORSA
@@ -176,7 +174,7 @@ int main(int argc, char **argv)
   //                std::cout << outMsg[0] << " " << outMsg[1] << std::endl;
     //            }
             }
-      //    std::cout << num_inl << " inl sent" << std::endl;
+    //      std::cout << num_inl << " inl sent" << std::endl;
 
           zmq::message_t reply(outMsg.size() * sizeof(float)) ;
           std::memcpy ((void *) reply.data (), outMsg.data(), outMsg.size() * sizeof(float) );
@@ -188,7 +186,7 @@ int main(int argc, char **argv)
               outMsg[count] = 1.;
               count++;
             }
-        //  std::cout << " ones set as no inliers found" << std::endl;
+//          std::cout << " ones set as no inliers found" << std::endl;
 
           zmq::message_t reply(outMsg.size() * sizeof(float)) ;
           std::memcpy ((void *) reply.data (), outMsg.data(), outMsg.size() * sizeof(float));

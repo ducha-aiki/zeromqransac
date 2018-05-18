@@ -87,7 +87,7 @@ struct RANSACPars
     LAFCoef = 3.0;
     HLAFCoef = 10.0;
     errorType = SYMM_SUM;
-    doSymmCheck = 0;
+    doSymmCheck = 1;
     justMarkOutliers=0;
   }
 };
