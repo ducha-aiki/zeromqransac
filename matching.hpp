@@ -65,7 +65,6 @@ struct RANSACPars
   std::string port;
   std::string Alg;
   double duplicateDist;
-  int useF;
   double err_threshold;
   double confidence;
   int max_samples;
@@ -80,7 +79,6 @@ struct RANSACPars
   {
     Alg = "H";// Can be H, F or ORSA
     duplicateDist = -1;
-    useF=0;
     err_threshold = 2.0;
     confidence = 0.99;
     max_samples = 1e5;

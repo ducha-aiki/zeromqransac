@@ -434,7 +434,7 @@ int LORANSACFiltering(TentativeCorrespList &in_corresp, TentativeCorrespList &ra
       *u2Ptr =  1.;
       u2Ptr++;
     };
-  if (pars.useF)
+  if (pars.Alg == "F")
     {
       int* data_out = (int *) malloc(tent_size * 18 * sizeof(int));
       double *resids;
@@ -485,7 +485,7 @@ int LORANSACFiltering(TentativeCorrespList &in_corresp, TentativeCorrespList &ra
   delete [] inl2;
 
   //Empirical checks
-  if (!(pars.useF)) //H
+  if (!(pars.Alg == "F")) //H
     {
       cv::Mat Hlor(3,3,CV_64F, Hloran);
       cv::Mat Hinv(3,3,CV_64F);
